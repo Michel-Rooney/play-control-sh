@@ -10,7 +10,7 @@ if not players:
     print("Nenhum player em execução.")
 else:
     # Define o caminho do arquivo de texto
-    output_file = "./players.txt"
+    output_file = os.path.expanduser("~/.config/i3/play/players.txt")
 
     # Salva a lista de players no arquivo de texto
     with open(output_file, 'w') as file:
@@ -30,13 +30,15 @@ with open(output_file, 'r') as file:
     players = file.read().strip().split('\n')
 
 
-contador = int(open("./contador.txt").read().strip())
+contador_path = os.path.expanduser("~/.config/i3/play/contador.txt")
+contador = int(open(contador_path).read().strip())
+
 if contador < (len(players) - 1):
     contador += 1
 else:
     contador = 0
 
-with open('./contador.txt', 'w') as file:
+with open(contador_path, 'w') as file:
     file.write(f'{contador}')
 
 # Obtém o elemento correspondente ao índice do contador
@@ -45,5 +47,7 @@ player = players[contador]
 # Imprime o player correspondente ao contador
 # print(f"Player no índice {contador}: {player}")
 
-with open('player.txt', 'w') as file:
+player_path = os.path.expanduser('~/.config/i3/play/player.txt')
+
+with open(player_path, 'w') as file:
     file.write(f'{player}')
