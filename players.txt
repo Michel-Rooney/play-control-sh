@@ -1,2 +1,1 @@
-firefox.instance_1_58
 spotify
